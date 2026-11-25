@@ -1,6 +1,6 @@
 .site-footer {
-  margin-left: 320px;
-  padding: 0 10rem;
+  margin-left: calc(var(--page-gutter) + 320px);
+  padding: 0 var(--page-gutter) 0 2rem;
   color: #777;
   background: #fff;
 }

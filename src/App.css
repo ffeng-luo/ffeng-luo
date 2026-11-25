@@ -32,6 +32,16 @@ a:hover {
 }
 
 /* ======== Layout ======== */
+/* Page width settings (desktop, > 1100px):
+   --layout-max-width: max width of hero (320px) + gap + main content, centered.
+   --page-gutter-min:  minimum blank space on the left and right edges.
+   On wide screens the extra width becomes left/right blank space. */
+:root {
+  --layout-max-width: 1120px;
+  --page-gutter-min: 8rem;
+  --page-gutter: max(var(--page-gutter-min), calc((100vw - var(--layout-max-width)) / 2));
+}
+
 .App {
   min-height: 100vh;
 }
@@ -63,7 +73,7 @@ header:where(.header-wrapper){
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0 2rem 8rem;
+  padding: 2rem 0 2rem var(--page-gutter);
   /* Let the page provide the background; a transformed opaque panel can
      expose a compositing seam beneath a translucent modal backdrop. */
   background-color: transparent;
@@ -75,9 +85,9 @@ header:where(.header-wrapper){
 /* ======== Main content ======== */
 .right-content {
   flex: 1;
-  padding: 2rem 8rem 2rem 10rem;
+  padding: 2rem calc(var(--page-gutter) - 2rem) 2rem 2rem;
   background: #fff;
-  margin-left: 320px;
+  margin-left: calc(var(--page-gutter) + 320px);
 }
 
 .content-shell {
@@ -102,6 +112,10 @@ nav a:hover {
 
 /* ======== Responsive layout ======== */
 @media (max-width: 1100px) {
+  :root {
+    --page-gutter: 2rem;
+  }
+
   .main-layout {
     flex-direction: column;
     margin-top: 60px;
